@@ -1,0 +1,18 @@
+version: "3.8"
+
+# Access through terminal:
+# docker compose exec -it mariadb mysql -u root -p
+
+volumes:
+    mariadb_data: ~
+
+services:
+    mariadb:
+        image: mariadb:10
+        entrypoint: mysqld_safe --skip-grant-tables --user=mysql
+        volumes:
+            - mariadb_data:/var/lib/mysql
+        environment:
+            MYSQL_USER: mysql
+            MYSQL_PASSWORD: mysql
+            MYSQL_DATABASE: db_admin
